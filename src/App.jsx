@@ -1,5 +1,5 @@
 import "./App.css";
-import { FaLinkedin, FaGithub } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa";
 import { SiGooglescholar } from "react-icons/si";
 import { MdEmail } from "react-icons/md";
 
@@ -38,7 +38,7 @@ function App() {
 
 
           <a
-            href="inkedin.com/in/numan-zafar/"
+            href="https://www.linkedin.com/in/numan-zafar/"
             target="_blank"
             rel="noreferrer"
             className="icon-link"

@@ -1,9 +1,12 @@
+import { useState } from "react";
 import "./App.css";
 import { FaLinkedin } from "react-icons/fa";
 import { SiGooglescholar } from "react-icons/si";
 import { MdEmail } from "react-icons/md";
 
 function App() {
+  const bannerVideos = ["/banner.mp4", "/banner2.mp4"];
+  const [currentVideo, setCurrentVideo] = useState(0);
   return (
     <div>
       <header className="topbar">
@@ -71,7 +74,7 @@ function App() {
             <h1>Numan Zafar</h1>
 
             <p>
-              Final-year PhD Candidate in Computer Science at Clarkson University.
+              PhD Candidate
             </p>
 
             <p>
@@ -91,9 +94,63 @@ function App() {
           </div>
         </section>
 
-        {/* <section className="banner-section">
-          <img src="/banner.gif" alt="Research banner" className="banner-gif" />
-        </section> */}
+        <section className="banner-section">
+          <div className="banner-wrap">
+            <video
+              key={bannerVideos[currentVideo]}
+              className="banner-video"
+              autoPlay
+              muted
+              playsInline
+              loop={currentVideo === 0}
+              onEnded={() => {
+                setCurrentVideo(0);
+              }}
+            >
+              <source src={bannerVideos[currentVideo]} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+
+            {bannerVideos.length > 1 && (
+              <div className="banner-controls">
+                {currentVideo > 0 ? (
+                  <button
+                    className="banner-arrow"
+                    onClick={() => setCurrentVideo(currentVideo - 1)}
+                    aria-label="Previous video"
+                  >
+                    &lt;
+                  </button>
+                ) : (
+                  <div className="banner-arrow-space" />
+                )}
+
+                <div className="banner-dots">
+                  {bannerVideos.map((_, index) => (
+                    <button
+                      key={index}
+                      className={`banner-dot ${currentVideo === index ? "active" : ""}`}
+                      onClick={() => setCurrentVideo(index)}
+                      aria-label={`Go to video ${index + 1}`}
+                    />
+                  ))}
+                </div>
+
+                {currentVideo < bannerVideos.length - 1 ? (
+                  <button
+                    className="banner-arrow"
+                    onClick={() => setCurrentVideo(currentVideo + 1)}
+                    aria-label="Next video"
+                  >
+                    &gt;
+                  </button>
+                ) : (
+                  <div className="banner-arrow-space" />
+                )}
+              </div>
+            )}
+          </div>
+        </section>
 
         <section id="publications" className="section">
           <h2>Publications</h2>

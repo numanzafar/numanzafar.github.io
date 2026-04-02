@@ -25,20 +25,6 @@ a {
   margin: 0;
 }
 
-/* .topbar {
-  background: #a9a9a9;
-  color: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 6px 30px;
-  position: fixed;
-  top: 0;
-  left: 10;
-  width: calc(80.9% - 41px);
-  z-index: 1000;
-} */
-
 .topbar {
   background: #a9a9a9;
   color: white;
@@ -66,9 +52,9 @@ a {
 }
 
 .brand {
-  font-size: 40px;
+  font-size: 30px;
   font-weight: 700;
-  font-family: "Brush Script MT", "Segoe Script", cursive;
+  font-family: Arial, Helvetica, sans-serif;
   color: white;
   letter-spacing: 0.5px;
 }
@@ -133,22 +119,6 @@ a {
   display: block;
 }
 
-.banner-section {
-  margin: 50px auto;
-  width: 100%;
-  max-width: 1100px;
-  padding: 0 20px;
-}
-
-.banner-gif {
-  display: block;
-  width: 100%;
-  max-width: 1000px;
-  height: auto;
-  margin: 0 auto;
-  border: 2px solid #ccc;
-}
-
 .image-contact {
   margin-top: 18px;
 }
@@ -170,6 +140,80 @@ a {
   font-size: 15px;
   line-height: 1.7;
   margin: 0 0 28px;
+}
+
+.banner-section {
+  margin: -80px 0 30px;
+  width: 100%;
+}
+
+.banner-wrap {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 0 0 360px;
+}
+
+.banner-video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.banner-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  margin-top: 12px;
+}
+
+.banner-arrow {
+  border: none;
+  background: transparent;
+  font-size: 24px;
+  font-weight: 700;
+  color: #888;
+  cursor: pointer;
+  padding: 0 5px;
+  transition: color 0.2s ease;
+  position: relative;
+  top: 6px;
+}
+
+.banner-arrow:hover {
+  color: orange;
+}
+
+.banner-arrow-space {
+  width: 10px;
+}
+
+.banner-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.banner-dot {
+  width: 18px;
+  height: 3px;
+  border: none;
+  border-radius: 999px;
+  background: #bdbdbd;
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.2s ease;
+}
+
+.banner-dot:hover {
+  background: orange;
+}
+
+.banner-dot.active {
+  background: orange;
 }
 
 .section {
@@ -237,7 +281,7 @@ a {
 }
 
 #publications {
-  margin-top: 80px;
+  margin-top: 20px;
 }
 
 .publication-item {
@@ -283,14 +327,7 @@ a {
 .publication-links {
   margin: 4px 0 0;
   font-size: 12px;
-  /* text-align: left; */
 }
-
-/* .publication-links a { */
-  /* color: #000; */
-  /* font-weight: 600; */
-  /* text-decoration: underline; */
-/* } */
 
 .doi-button {
   display: inline-block;

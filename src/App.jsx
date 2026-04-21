@@ -78,18 +78,15 @@ function App() {
             </p>
 
             <p>
-              Numan is a final-year PhD candidate in the Department of Computer
-              Science at Clarkson University. His research focuses on the
-              intersection of virtual reality (VR), deep learning, and
-              human-computer interaction (HCI), modeling user behavior and
-              cognitive patterns in immersive environments to improve interaction
-              design, usability, and user trust.
+              Numan is a final-year PhD candidate in the Department of Computer Science at Clarkson University. 
+              His research focuses on the  intersection of human–computer interaction, spatial computing, AI, 
+              and multimodal learning, and modeling user behavior and cognitive patterns in immersive environments 
+              to improve interaction design, user experience, usability, and trust.
             </p>
 
             <p>
-              Research interests include Human-Computer Interaction, Interactive
-              Systems, User Familiarity, User Experience, AI for HCI, Virtual
-              Reality, and Deep Learning.
+              Research interests include Human-Computer Interaction, Spatial Computing, Interactive
+              Systems, User Experience, Multimodal Learning, AI for HCI, AR/VR/XR, and Computer Vision & Graphics.
             </p>
           </div>
         </section>

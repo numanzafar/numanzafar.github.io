@@ -3,22 +3,109 @@ import "./App.css";
 import { FaLinkedin } from "react-icons/fa";
 import { SiGooglescholar } from "react-icons/si";
 import { MdEmail } from "react-icons/md";
+import News from "./News";
+import CursorTrail from "./CursorTrail";
 
 function App() {
   const bannerVideos = ["/banner.mp4", "/banner2.mp4"];
   const [currentVideo, setCurrentVideo] = useState(0);
+  const [page, setPage] = useState("home");
+
+  const goToHomeSection = (sectionId) => {
+    setPage("home");
+
+    setTimeout(() => {
+      const section = document.getElementById(sectionId);
+
+      if (section) {
+        section.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      } else {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      }
+    }, 300);
+  };
+
+  const goToNews = () => {
+    setPage("news");
+
+    setTimeout(() => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }, 100);
+  };
+
+
   return (
-    <div>
+    <div className="app-layout">
+      {/* <CursorTrail /> */}
       <header className="topbar">
         <div className="topbar-inner">
         <div className="topbar-left">
-          <a href="#" className="brand">Numan</a>
+          <a
+            href="#home"
+            className="brand"
+            onClick={(e) => {
+              e.preventDefault();
+              goToHomeSection("home");
+            }}
+          >
+            Numan
+          </a>
 
           <nav className="nav">
-            <a href="#publications">Publications</a>
-            <a href="#Acdemic-Services">Acdemic Services</a>
-            <a href="#awards">Awards</a>
-            <a href="#teaching">Teaching</a>
+            <a
+              href="#publications"
+              onClick={(e) => {
+                e.preventDefault();
+                goToHomeSection("publications");
+              }}
+            >
+              Publications
+            </a>
+            <a
+              href="#Acdemic-Services"
+              onClick={(e) => {
+                e.preventDefault();
+                goToHomeSection("Acdemic-Services");
+              }}
+            >
+              Acdemic Services
+            </a>
+            <a
+              href="#awards"
+              onClick={(e) => {
+                e.preventDefault();
+                goToHomeSection("awards");
+              }}
+            >
+              Awards
+            </a>
+            <a
+              href="#teaching"
+              onClick={(e) => {
+                e.preventDefault();
+                goToHomeSection("teaching");
+              }}
+            >
+              Teaching
+            </a>
+            <a
+              href="#news"
+              onClick={(e) => {
+                e.preventDefault();
+                goToNews();
+              }}
+            >
+              News
+            </a>
             <a
               href="https://docs.google.com/document/d/1zdfoc2-LBLkNjb11hweBIOdW-XOW-23p/edit?usp=sharing&ouid=114512959792367442978&rtpof=true&sd=true"
               target="_blank"
@@ -52,440 +139,456 @@ function App() {
         </div>
       </header>
 
-      <main className="container">
-        <section className="hero">
-          <div className="hero-image">
-            <img src="/dp.jpeg" alt="Numan" />
+      {page === "home" ? (
 
-            <div className="image-contact">
-              <p className="email-row">
-                <MdEmail className="email-icon" />
-                <span>zafarn@clarkson.edu</span>
-              </p>
+        <main className="container">
+          <section className="hero">
+            <div className="hero-image">
+              <img src="/dp.jpeg" alt="Numan" />
 
-              <p className="email-row">
-                <MdEmail className="email-icon" />
-                <span>numanzafar7@gmail.com</span>
-              </p>
-            </div>
-          </div>
+              <div className="image-contact">
+                <p className="email-row">
+                  <MdEmail className="email-icon" />
+                  <span>zafarn@clarkson.edu</span>
+                </p>
 
-          <div className="hero-text">
-            <h1>Numan Zafar</h1>
-
-            <p>
-              PhD Candidate
-            </p>
-
-            <p>
-              Numan is a final-year PhD candidate in the Department of Computer Science at Clarkson University. 
-              His research focuses on the  intersection of human–computer interaction, spatial computing, AI, 
-              and multimodal learning, and modeling user behavior and cognitive patterns in immersive environments 
-              to improve interaction design, user experience, usability, and trust.
-            </p>
-
-            <p>
-              Research interests include Human-Computer Interaction, Spatial Computing, Interactive
-              Systems, User Experience, Multimodal Learning, AI for HCI, AR/VR/XR, and Computer Vision & Graphics.
-            </p>
-          </div>
-        </section>
-
-        <section className="banner-section">
-          <div className="banner-wrap">
-            <video
-              key={bannerVideos[currentVideo]}
-              className="banner-video"
-              autoPlay
-              muted
-              playsInline
-              loop={currentVideo === 0}
-              onEnded={() => {
-                setCurrentVideo(0);
-              }}
-            >
-              <source src={bannerVideos[currentVideo]} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-
-            {bannerVideos.length > 1 && (
-              <div className="banner-controls">
-                {currentVideo > 0 ? (
-                  <button
-                    className="banner-arrow"
-                    onClick={() => setCurrentVideo(currentVideo - 1)}
-                    aria-label="Previous video"
-                  >
-                    &lt;
-                  </button>
-                ) : (
-                  <div className="banner-arrow-space" />
-                )}
-
-                <div className="banner-dots">
-                  {bannerVideos.map((_, index) => (
-                    <button
-                      key={index}
-                      className={`banner-dot ${currentVideo === index ? "active" : ""}`}
-                      onClick={() => setCurrentVideo(index)}
-                      aria-label={`Go to video ${index + 1}`}
-                    />
-                  ))}
+                <p className="email-row">
+                  <MdEmail className="email-icon" />
+                  <span>numanzafar7@gmail.com</span>
+                </p>
+                <div className="opportunity-box">
+                  <p className="opportunity-title">
+                    Open to Postdoc & Research Scientist Opportunities
+                  </p>
+                  <p className="opportunity-text">
+                    I am actively seeking postdoctoral, research scientist, 
+                    and industry research roles in HCI, Spatial Computing, AR/VR/XR, 
+                    AI, Human-Centered Computing, and Computer Vision.
+                  </p>
                 </div>
-
-                {currentVideo < bannerVideos.length - 1 ? (
-                  <button
-                    className="banner-arrow"
-                    onClick={() => setCurrentVideo(currentVideo + 1)}
-                    aria-label="Next video"
-                  >
-                    &gt;
-                  </button>
-                ) : (
-                  <div className="banner-arrow-space" />
-                )}
               </div>
-            )}
-          </div>
-        </section>
-
-        <section id="publications" className="section">
-          <h2>Publications</h2>
-
-          <div className="publication-item">
-            <div className="publication-image">
-              <img src="/vrcai.png" alt="Publication 1" />
-              <p className="publication-links">
-                <a
-                  href="https://doi.org/10.1145/3779232.3779463"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="doi-button"
-                >
-                  Paper
-                </a>
-              </p>
             </div>
-            <div className="publication-content">
-              <h3>
-                Similarity-Aware Behavioral Biometrics for Detecting User Familiarity in VR
-              </h3>
-              <p className="publication-authors">
-                <strong>Numan Zafar</strong>, Shafique Ahmad Chaudhry
-              </p>
-              <p className="publication-venue">
-                <em>20th ACM SIGGRAPH International Conference on Virtual-Reality Continuum and its Applications in Industry<br /> 
-                  (ACM SIGGRAPH VRCAI), Macau, China, 2025</em>
+
+            <div className="hero-text">
+              <h1>Numan Zafar</h1>
+
+              <p>
+                PhD Candidate
               </p>
 
-            </div>
-          </div>
+              <p>
+                Numan is a final-year PhD candidate in the Department of Computer Science at Clarkson University. 
+                His research focuses on the  intersection of human–computer interaction, spatial computing, AI, 
+                and multimodal learning, and modeling user behavior and cognitive patterns in immersive environments 
+                to improve interaction design, user experience, usability, and trust.
+              </p>
 
-          <div className="publication-item">
-            <div className="publication-image">
-              <img src="/ism.png" alt="Publication 2" />
-              <p className="publication-links">
-                <a
-                  href="https://doi.org/10.1109/ISM66958.2025.00061"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="doi-button"
-                >
-                  Paper
-                </a>
+              <p>
+                Research interests include Human-Computer Interaction, Spatial Computing, Interactive
+                Systems, User Experience, Multimodal Learning, AI for HCI, AR/VR/XR, and Computer Vision & Graphics.
               </p>
-            </div>
-            <div className="publication-content">
-              <h3>
-                Knowledge-Based Behavioral Biometrics for Secure Authentication in Virtual Reality
-              </h3>
-              <p className="publication-authors">
-                <strong>Numan Zafar</strong>, Priyo Ranjan Kundu Prosun, Shafique Ahmad Chaudhry
-              </p>
-              <p className="publication-venue">
-                <em>IEEE 27th International Symposium on Multimedia<br />
-                (IEEE ISM), Naples, Italy, 2025
-                </em>
-              </p>
-              <p className="publication-description">
-                
-              </p>
-            </div>
-          </div>
+              <section className="banner-section">
+            <div className="banner-wrap">
+              <video
+                key={bannerVideos[currentVideo]}
+                className="banner-video"
+                autoPlay
+                muted
+                playsInline
+                loop={currentVideo === 0}
+                onEnded={() => {
+                  setCurrentVideo(0);
+                }}
+              >
+                <source src={bannerVideos[currentVideo]} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
 
-          <div className="publication-item">
-            <div className="publication-image">
-              <img src="/isemv.png" alt="Publication 3" />
-              <p className="publication-links">
-                <a
-                  href="https://doi.org/10.48550/arXiv.2510.12994"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="doi-button"
-                >
-                  Paper
-                </a>
-              </p>
-            </div>
-            <div className="publication-content">
-              <h3>
-                Deep Learning-Based Visual Fatigue Detection Using Eye Gaze Patterns in VR
-              </h3>
-              <p className="publication-authors">
-                <strong>Numan Zafar</strong>, Johnathan Locke, Shafique Ahmad Chaudhry
-              </p>
-              <p className="publication-venue">
-                <em>2025 IEEE International Symposium on Emerging Metaverse<br /> 
-                (ISEMV), Honolulu, HI, USA, 2025
-                </em>
-              </p>
-            </div>
-          </div>
+              {bannerVideos.length > 1 && (
+                <div className="banner-controls">
+                  {currentVideo > 0 ? (
+                    <button
+                      className="banner-arrow"
+                      onClick={() => setCurrentVideo(currentVideo - 1)}
+                      aria-label="Previous video"
+                    >
+                      &lt;
+                    </button>
+                  ) : (
+                    <div className="banner-arrow-space" />
+                  )}
 
-          <div className="publication-item">
-            <div className="publication-image">
-              <img src="/qomex.png" alt="Publication 4" />
-              <p className="publication-links">
-                <a
-                  href="https://doi.org/10.48550/arXiv.2510.12988"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="doi-button"
-                >
-                  Paper
-                </a>
-              </p>
-            </div>
-            <div className="publication-content">
-              <h3>
-                Behavioral Biometrics for Automatic Detection of User Familiarity in VR
-              </h3>
-              <p className="publication-authors">
-                <strong>Numan Zafar</strong>, Priyo Ranjan Kundu Prosun, Shafique Ahmad Chaudhry
-              </p>
-              <p className="publication-venue">
-                <em>17th International Conference on Quality of Multimedia Experience<br />
-                (QoMEX), Madrid, Spain, 2025
-                </em>
-              </p>
-            </div>
-          </div>
+                  <div className="banner-dots">
+                    {bannerVideos.map((_, index) => (
+                      <button
+                        key={index}
+                        className={`banner-dot ${currentVideo === index ? "active" : ""}`}
+                        onClick={() => setCurrentVideo(index)}
+                        aria-label={`Go to video ${index + 1}`}
+                      />
+                    ))}
+                  </div>
 
-          <div className="publication-item">
-            <div className="publication-image">
-              <img src="/aixvr.png" alt="Publication 5" />
-              <p className="publication-links">
-                <a
-                  href="https://doi.org/10.48550/arXiv.2401.16443"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="doi-button"
-                >
-                  Paper
-                </a>
-              </p>
+                  {currentVideo < bannerVideos.length - 1 ? (
+                    <button
+                      className="banner-arrow"
+                      onClick={() => setCurrentVideo(currentVideo + 1)}
+                      aria-label="Next video"
+                    >
+                      &gt;
+                    </button>
+                  ) : (
+                    <div className="banner-arrow-space" />
+                  )}
+                </div>
+              )}
             </div>
-            <div className="publication-content">
-              <h3>
-                Evaluating deep networks for detecting user familiarity with VR from hand interactions
-              </h3>
-              <p className="publication-authors">
-                Mingjun Li, <strong>Numan Zafar</strong>, Natasha Kholgade Banerjee, Sean Banerjee
-              </p>
-              <p className="publication-venue">
-                <em>6th IEEE International Conference on Artificial Intelligence and eXtended 
-                  and Virtual Reality<br />  
-                  (IEEE AIxVR), Los Angles, California, 2024
+          </section>
+            </div>
+          </section>
+
+
+          <section id="publications" className="section">
+            <h2>Publications</h2>
+
+            <div className="publication-item">
+              <div className="publication-image">
+                <img src="/vrcai.png" alt="Publication 1" />
+                <p className="publication-links">
+                  <a
+                    href="https://doi.org/10.1145/3779232.3779463"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="doi-button"
+                  >
+                    Paper
+                  </a>
+                </p>
+              </div>
+              <div className="publication-content">
+                <h3>
+                  Similarity-Aware Behavioral Biometrics for Detecting User Familiarity in VR
+                </h3>
+                <p className="publication-authors">
+                  <strong>Numan Zafar</strong>, Shafique Ahmad Chaudhry
+                </p>
+                <p className="publication-venue">
+                  <em>20th ACM SIGGRAPH International Conference on Virtual-Reality Continuum and its Applications in Industry<br /> 
+                    (ACM SIGGRAPH VRCAI), Macau, China, 2025</em>
+                </p>
+
+              </div>
+            </div>
+
+            <div className="publication-item">
+              <div className="publication-image">
+                <img src="/ism.png" alt="Publication 2" />
+                <p className="publication-links">
+                  <a
+                    href="https://doi.org/10.1109/ISM66958.2025.00061"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="doi-button"
+                  >
+                    Paper
+                  </a>
+                </p>
+              </div>
+              <div className="publication-content">
+                <h3>
+                  Knowledge-Based Behavioral Biometrics for Secure Authentication in Virtual Reality
+                </h3>
+                <p className="publication-authors">
+                  <strong>Numan Zafar</strong>, Priyo Ranjan Kundu Prosun, Shafique Ahmad Chaudhry
+                </p>
+                <p className="publication-venue">
+                  <em>IEEE 27th International Symposium on Multimedia<br />
+                  (IEEE ISM), Naples, Italy, 2025
                   </em>
-              </p>
+                </p>
+                <p className="publication-description">
+                  
+                </p>
+              </div>
             </div>
-          </div>
 
             <div className="publication-item">
-            <div className="publication-image">
-              <img src="/2023.png" alt="Publication 6" />
-              <p className="publication-links">
-                <a
-                  href="https://link.springer.com/chapter/10.1007/978-981-97-3682-9_72"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="doi-button"
-                >
-                  Paper
-                </a>
-              </p>
+              <div className="publication-image">
+                <img src="/isemv.png" alt="Publication 3" />
+                <p className="publication-links">
+                  <a
+                    href="https://doi.org/10.48550/arXiv.2510.12994"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="doi-button"
+                  >
+                    Paper
+                  </a>
+                </p>
+              </div>
+              <div className="publication-content">
+                <h3>
+                  Deep Learning-Based Visual Fatigue Detection Using Eye Gaze Patterns in VR
+                </h3>
+                <p className="publication-authors">
+                  <strong>Numan Zafar</strong>, Johnathan Locke, Shafique Ahmad Chaudhry
+                </p>
+                <p className="publication-venue">
+                  <em>2025 IEEE International Symposium on Emerging Metaverse<br /> 
+                  (ISEMV), Honolulu, HI, USA, 2025
+                  </em>
+                </p>
+              </div>
             </div>
-            <div className="publication-content">
-              <h3>
-                Novel Attention-Based Framework for Person Re-identification in Video Surveillance
-              </h3>
-              <p className="publication-authors">
-                Lichao Cui, Mingxin Liu, Ruhua Wang, <strong>Numan Zafar</strong>
-              </p>
-              <p className="publication-venue">
-                <em>International Conference on SmartRail, Traffic and Transportation Engineering<br /> 
-                  (ICSTTE),Changsha, China, 2023
-                </em>
-              </p>
-            </div>
-          </div>
 
             <div className="publication-item">
-            <div className="publication-image">
-              <img src="/music.png" alt="Publication 7" />
-              <p className="publication-links">
-                <a
-                  href="https://link.springer.com/chapter/10.1007/978-981-16-7618-5_21"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="doi-button"
-                >
-                  Paper
-                </a>
-              </p>
+              <div className="publication-image">
+                <img src="/qomex.png" alt="Publication 4" />
+                <p className="publication-links">
+                  <a
+                    href="https://doi.org/10.48550/arXiv.2510.12988"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="doi-button"
+                  >
+                    Paper
+                  </a>
+                </p>
+              </div>
+              <div className="publication-content">
+                <h3>
+                  Behavioral Biometrics for Automatic Detection of User Familiarity in VR
+                </h3>
+                <p className="publication-authors">
+                  <strong>Numan Zafar</strong>, Priyo Ranjan Kundu Prosun, Shafique Ahmad Chaudhry
+                </p>
+                <p className="publication-venue">
+                  <em>17th International Conference on Quality of Multimedia Experience<br />
+                  (QoMEX), Madrid, Spain, 2025
+                  </em>
+                </p>
+              </div>
             </div>
-            <div className="publication-content">
-              <h3>
-                Collaborative filtering based hybrid music recommendation system
-              </h3>
-              <p className="publication-authors">
-                Muhammad Umair Hassan, <strong>Numan Zafar</strong>, Haider Ali, Irfan Yaqoob, 
-                Saleh Abdel Afou Alaliyat, Ibrahim A Hameed
-              </p>
-              <p className="publication-venue">
-                <em>Proceedings of International Conference on Information Technology and Applications<br />  
-                  (ICITA), Dubai, UAE, 2021
-                </em>
-              </p>
-            </div>
-          </div>
 
             <div className="publication-item">
-            <div className="publication-image">
-              <img src="/review.png" alt="Publication 8" />
-              <p className="publication-links">
-                <a
-                  href="https://doi.org/10.1109/ICAI52203.2021.9445247"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="doi-button"
-                >
-                  Paper
-                </a>
-              </p>
+              <div className="publication-image">
+                <img src="/aixvr.png" alt="Publication 5" />
+                <p className="publication-links">
+                  <a
+                    href="https://doi.org/10.48550/arXiv.2401.16443"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="doi-button"
+                  >
+                    Paper
+                  </a>
+                </p>
+              </div>
+              <div className="publication-content">
+                <h3>
+                  Evaluating deep networks for detecting user familiarity with VR from hand interactions
+                </h3>
+                <p className="publication-authors">
+                  Mingjun Li, <strong>Numan Zafar</strong>, Natasha Kholgade Banerjee, Sean Banerjee
+                </p>
+                <p className="publication-venue">
+                  <em>6th IEEE International Conference on Artificial Intelligence and eXtended 
+                    and Virtual Reality<br />  
+                    (IEEE AIxVR), Los Angles, California, 2024
+                    </em>
+                </p>
+              </div>
             </div>
-            <div className="publication-content">
-              <h3>
-                Towards deep learning: A review on adversarial attacks
-              </h3>
-              <p className="publication-authors">
-                Muhammad Maaz Irfan, Sheraz Ali, Irfan Yaqoob, <strong>Numan Zafar</strong>
-              </p>
-              <p className="publication-venue">
-                <em>IEEE International Conference on Artificial Intelligence<br /> 
-                (IEEE ICAI), Islamabad, Pakistan, 2021
-                </em>
-              </p>
+
+              <div className="publication-item">
+              <div className="publication-image">
+                <img src="/2023.png" alt="Publication 6" />
+                <p className="publication-links">
+                  <a
+                    href="https://link.springer.com/chapter/10.1007/978-981-97-3682-9_72"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="doi-button"
+                  >
+                    Paper
+                  </a>
+                </p>
+              </div>
+              <div className="publication-content">
+                <h3>
+                  Novel Attention-Based Framework for Person Re-identification in Video Surveillance
+                </h3>
+                <p className="publication-authors">
+                  Lichao Cui, Mingxin Liu, Ruhua Wang, <strong>Numan Zafar</strong>
+                </p>
+                <p className="publication-venue">
+                  <em>International Conference on SmartRail, Traffic and Transportation Engineering<br /> 
+                    (ICSTTE),Changsha, China, 2023
+                  </em>
+                </p>
+              </div>
             </div>
-          </div>
 
-          <div className="publication-item">
-            <div className="publication-image">
-              <img src="/pvgg.png" alt="Publication 8" />
-              <p className="publication-links">
-                <a
-                  href="https://doi.org/10.1016/j.neucom.2020.10.086"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="doi-button"
-                >
-                  Paper
-                </a>
-              </p>
+              <div className="publication-item">
+              <div className="publication-image">
+                <img src="/music.png" alt="Publication 7" />
+                <p className="publication-links">
+                  <a
+                    href="https://link.springer.com/chapter/10.1007/978-981-16-7618-5_21"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="doi-button"
+                  >
+                    Paper
+                  </a>
+                </p>
+              </div>
+              <div className="publication-content">
+                <h3>
+                  Collaborative filtering based hybrid music recommendation system
+                </h3>
+                <p className="publication-authors">
+                  Muhammad Umair Hassan, <strong>Numan Zafar</strong>, Haider Ali, Irfan Yaqoob, 
+                  Saleh Abdel Afou Alaliyat, Ibrahim A Hameed
+                </p>
+                <p className="publication-venue">
+                  <em>Proceedings of International Conference on Information Technology and Applications<br />  
+                    (ICITA), Dubai, UAE, 2021
+                  </em>
+                </p>
+              </div>
             </div>
-            <div className="publication-content">
-              <h3>
-                PointVGG: Graph convolutional network with progressive aggregating features on point clouds
-              </h3>
-              <p className="publication-authors">
-                Rongkang Li, Yumeng Zhang, Dongmei Niu, Guangchao Yang, <strong>Numan Zafar</strong>, Caiming Zhang, Xiuyang Zhao
-              </p>
-              <p className="publication-venue">
-                <em>ELSEVIER, Neurocomputing, 2021<br /> 
-                Impact Factor 6.5
-                </em>
-              </p>
+
+              <div className="publication-item">
+              <div className="publication-image">
+                <img src="/review.png" alt="Publication 8" />
+                <p className="publication-links">
+                  <a
+                    href="https://doi.org/10.1109/ICAI52203.2021.9445247"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="doi-button"
+                  >
+                    Paper
+                  </a>
+                </p>
+              </div>
+              <div className="publication-content">
+                <h3>
+                  Towards deep learning: A review on adversarial attacks
+                </h3>
+                <p className="publication-authors">
+                  Muhammad Maaz Irfan, Sheraz Ali, Irfan Yaqoob, <strong>Numan Zafar</strong>
+                </p>
+                <p className="publication-venue">
+                  <em>IEEE International Conference on Artificial Intelligence<br /> 
+                  (IEEE ICAI), Islamabad, Pakistan, 2021
+                  </em>
+                </p>
+              </div>
             </div>
-          </div>
 
-        </section>
+            <div className="publication-item">
+              <div className="publication-image">
+                <img src="/pvgg.png" alt="Publication 8" />
+                <p className="publication-links">
+                  <a
+                    href="https://doi.org/10.1016/j.neucom.2020.10.086"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="doi-button"
+                  >
+                    Paper
+                  </a>
+                </p>
+              </div>
+              <div className="publication-content">
+                <h3>
+                  PointVGG: Graph convolutional network with progressive aggregating features on point clouds
+                </h3>
+                <p className="publication-authors">
+                  Rongkang Li, Yumeng Zhang, Dongmei Niu, Guangchao Yang, <strong>Numan Zafar</strong>, Caiming Zhang, Xiuyang Zhao
+                </p>
+                <p className="publication-venue">
+                  <em>ELSEVIER, Neurocomputing, 2021<br /> 
+                  Impact Factor 6.5
+                  </em>
+                </p>
+              </div>
+            </div>
 
-        <section id="Acdemic-Services" className="section">
-          <h2>Acdemic Services</h2>
-          <p>
-          < strong>Reivewer</strong><br />
-          IEEE VIS 2026 <br />
-          QoMEX 2026<br />
-          FLICS 2026
+          </section>
 
-          
-          </p>
-        </section>
+          <section id="Acdemic-Services" className="section">
+            <h2>Acdemic Services</h2>
+            <p>
+            < strong>Reivewer</strong><br />
+            IEEE VIS 2026 <br />
+            QoMEX 2026<br />
+            FLICS 2026
 
-        <section id="awards" className="section">
-          <h2>Awards</h2>
-          <p>
-            < strong>Travel Grant</strong> : Awarded by QoMEX 2025 <br/>
-            < strong>Travel Grant</strong> : Awarded by Clarkson University Graduate Student Association (CUGSA) 2025
-          </p>
-        </section>
+            
+            </p>
+          </section>
 
-        <section id="teaching" className="section">
-          <h2>Teaching</h2>
+          <section id="awards" className="section">
+            <h2>Awards</h2>
+            <p>
+              < strong>Travel Grant</strong> : Awarded by QoMEX - 2025 <br/>
+              < strong>Travel Grant</strong> : Awarded by Clarkson University Graduate Student Association (CUGSA) - 2025<br/>
+              <strong>Phalanx Award</strong> : Prestigious award of the Clarkson University - 2025
+            </p>
+          </section>
 
-          <p><strong>Students Mentored</strong></p>
+          <section id="teaching" className="section">
+            <h2>Teaching</h2>
 
-          <ul className="mentored-students">
-            <li>
-              <strong>Priyo Prosun</strong> (Ph.D., Clarkson University)<br/>
-              <span className="student-date">Jan 2025 – Current</span> <br/>
-              <span className="student-description">
-              Virtual Reality, Unity, Machine Learning, server usage, and maintenance. </span>
-            </li>
+            <p><strong>Students Mentored</strong></p>
 
-            <li>
-              <strong>Trey Rachall</strong> (B.S., Texas State University), NSF REU Summer Researcher<br/>
-              <span className="student-date">May 2025 – Aug 2025</span><br />
-              <span className="student-description">
-              Virtual Reality, Unity, data collection and visualization, data analysis, Python programming, machine learning, server usage, and maintenance.
-              </span>
-            </li>
+            <ul className="mentored-students">
+              <li>
+                <strong>Priyo Prosun</strong> (Ph.D., Clarkson University)<br/>
+                <span className="student-date">Jan 2025 – Current</span> <br/>
+                <span className="student-description">
+                Virtual Reality, Unity, Machine Learning, server usage, and maintenance. </span>
+              </li>
 
-            <li>
-              <strong>Johnathan Locke</strong> (B.S., Clarkson University), Jan 2025 – May 2025<br />
-              <span className="student-description">
-              Virtual Reality, Python programming, data visualization, data analysis, machine learning, and paper writing.
-              </span>
-            </li>
+              <li>
+                <strong>Trey Rachall</strong> (B.S., Texas State University), NSF REU Summer Researcher<br/>
+                <span className="student-date">May 2025 – Aug 2025</span><br />
+                <span className="student-description">
+                Virtual Reality, Unity, data collection and visualization, data analysis, Python programming, machine learning, server usage, and maintenance.
+                </span>
+              </li>
 
-            <li>
-              <strong>Deepthi Yanamala</strong> (M.S., Clarkson University), Sep 2024 – Apr 2025<br />
-              <span className="student-description">
-              Virtual Reality, Python programming, and machine learning. </span>
-            </li>
+              <li>
+                <strong>Johnathan Locke</strong> (B.S., Clarkson University), Jan 2025 – May 2025<br />
+                <span className="student-description">
+                Virtual Reality, Python programming, data visualization, data analysis, machine learning, and paper writing.
+                </span>
+              </li>
 
-            <li>
-              <strong>Jyothinadh Minnekanti</strong> (M.S., Clarkson University), Sep 2022 – May 2024<br />
-              <span className="student-description">
-              Virtual Reality, Unity, data collection and visualization, data analysis, machine learning, server usage and maintenance, and paper writing.
-              </span>
-            </li>
-          </ul>
-        </section>
+              <li>
+                <strong>Deepthi Yanamala</strong> (M.S., Clarkson University), Sep 2024 – Apr 2025<br />
+                <span className="student-description">
+                Virtual Reality, Python programming, and machine learning. </span>
+              </li>
 
-      </main>
+              <li>
+                <strong>Jyothinadh Minnekanti</strong> (M.S., Clarkson University), Sep 2022 – May 2024<br />
+                <span className="student-description">
+                Virtual Reality, Unity, data collection and visualization, data analysis, machine learning, server usage and maintenance, and paper writing.
+                </span>
+              </li>
+            </ul>
+          </section>
+
+        </main>
+      ) : (
+        <News />
+      )}
       <footer className="bottombar">
-      <p>Updated in March 2026 by Numan</p>
+      <p>Updated in May 2026 by Numan</p>
     </footer>
     </div>
   );
